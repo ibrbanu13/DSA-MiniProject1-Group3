@@ -19,6 +19,9 @@ public class DoublyLinkedList {
     public Node getTail() {
         return tail;
     }
+    public int getSize() {
+        return size;
+    }
 
 
     // node addition:
@@ -48,6 +51,34 @@ public class DoublyLinkedList {
         return newNode; // shifting the current pointer to the new node
     }
 
+    public Node insertBetween(Node older, Node newer, Page data) {
+        
+        Node newNode = new Node(data);
+        
+        // Connect the new node to its neighbors
+        newNode.prev = older;
+        newNode.next = newer;
+        
+        // Update the older neighbor
+        if (older != null) {
+            older.next = newNode;
+        } else {
+            // No older neighbor means the new node is the oldest
+            tail = newNode;
+        }
+    
+        // Update the newer neighbor
+        if (newer != null) {
+            newer.prev = newNode;
+        } else {
+            // No newer neighbor means the new node is the newest
+            head = newNode;
+        }
+    
+        size++;
+
+        return newNode;
+    }
    
     // node removal:
     public void removeNode(Node node) {
