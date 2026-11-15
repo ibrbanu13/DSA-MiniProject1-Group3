@@ -419,4 +419,16 @@ public class BrowserHistory {
     public boolean hasCurrentPage() {
         return current != null;
     }
+    public java.util.List<Page> getAllPages() {
+    java.util.List<Page> pages = new java.util.ArrayList<>();
+
+    Node temp = history.getTail();
+
+    while (temp != null) {
+        pages.add(temp.data);
+        temp = temp.next;
+    }
+
+    return pages;
+}
 }
